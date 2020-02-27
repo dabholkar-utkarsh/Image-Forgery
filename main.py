@@ -12,9 +12,21 @@ def get_metadata(file_types=[('Image files', '*.jpg *.pong *.gif *.jpeg')]):
     """
     Tk().withdraw()
     file_name = askopenfilename(title="Select an image", filetypes=file_types)
+    print(file_name)
     parser = createParser(file_name)
     for line in extractMetadata(parser).exportPlaintext():
         print(line)
+    with open(file_name, "rb") as f:
+        tags = exifread.process_file(f)
+        #print(tags)
+        print('$$$$$$$$$$$$$$$$$$$$$$$$$')
+        print(tags['Image Software'])
+        print('$$$$$$$$$$$$$$$$$$$$$$$$$')
 
 
-get_metadata([('Image files', '*.jpg *.pong *.gif *.jpeg')])
+get_metadata()
+
+
+
+
+
