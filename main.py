@@ -12,8 +12,9 @@ def get_metadata(file_types=[('Image files', '*.jpg *.pong *.gif *.jpeg')]):
     """
     Tk().withdraw()
     file_name = askopenfilename(title="Select an image", filetypes=file_types)
+    parser = createParser(file_name)
+    for line in extractMetadata(parser).exportPlaintext():
+        print(line)
 
-    # TODO: Return metadata of the selected image in file_name
 
-
-get_metadata([('Image files', '*.jpg *.pong *.gif *.jpeg'),('Python files', "*.py")])
+get_metadata([('Image files', '*.jpg *.pong *.gif *.jpeg')])
